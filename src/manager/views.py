@@ -26,8 +26,16 @@ class AddLikeView(View):
             book = Book.objects.get(id=book_id)
             if request.user in book.likes.all():
                 book.likes.remove(request.user)
+                book.count_likes -= 1
             else:
                 book.likes.add(request.user)
-
+                book.count_likes += 1
+            book.save()
 
         return redirect('list_view')
+
+class DetailBook(View):
+    def get(self, request, book_id):
+        comments_for_prefetch = Prefetch('comments', queryset=Comment.objects.annotate(likes_comments=Count('likes')))
+        book = Book.objects.filter(id=book_id).prefetch_related(comments_for_prefetch, 'authors').all()
+        return render(request, 'detail_book.html', {'book': book[0]})

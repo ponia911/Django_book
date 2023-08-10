@@ -13,8 +13,8 @@ class Book(models.Model):
     text = models.TextField()
     data = models.DateTimeField(auto_now_add=True)
     authors = models.ManyToManyField(User, related_name='like_books')
-    likes = models.ManyToManyField(User, related_name='like' )
-
+    likes = models.ManyToManyField(User, related_name='like')
+    count_likes = models.PositiveIntegerField(default=0)
 def __str__(self):
     return self.title
 
@@ -25,4 +25,3 @@ class Comment(models.Model):
     book = models.ForeignKey(Book, on_delete=models.CASCADE, related_name='comments')
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='comments')
     likes = models.ManyToManyField(User, related_name='liked_comments')
-    #count.likes = models.PositiveIntegerField(default=0)

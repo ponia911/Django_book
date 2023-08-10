@@ -1,9 +1,10 @@
 from django.urls import path
 
-from manager.views import AddLikeView, BookView
+from manager.views import AddLikeView, BookView, DetailBook
 
 urlpatterns = [
     path('', BookView.as_view(), name='list_view'),
     path('add_like/<int:book_id>', AddLikeView.as_view(), name='add_like'),
+    path('detail_book/<int:book_id>', DetailBook.as_view(), name='detail_book'),
 
 ]
