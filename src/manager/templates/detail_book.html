@@ -1,10 +1,30 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends "main.html" %}
 
-</body>
-</html>
+{% block title%}detail_book{% endblock %}
+
+
+{% block content%}
+<div class="container">
+    <h1>Книги</h1>
+    {{ user }}
+
+    <h2>{{ book.title }}</h2>
+    <h3>{{ book.text }}</h3>
+    <h4>{{ book.date }}</h4>
+    <h4>{{ book.authors.all }}</h4>
+
+    <a href="{% url 'add_like' book_id=book.id location=1 %}">
+        <h4>likes: {{ book.count_likes }}</h4></a>
+    {% if book.comments.exists %}
+    <h5> Comments: </h5>
+    {% for comment in book.comments.all %}
+    <h6>{{ comment.text }}</h6>
+    <h6>{{ comment.user.username }}</h6>
+
+    <h6>{{ comment.likes_comment }}</h6>
+    {% endfor %}
+    {% endif %}
+    <br>
+
+</div>
+{% endblock %}

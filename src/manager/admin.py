@@ -11,5 +11,5 @@ class CommentInline(admin.StackedInline):
 class BookAdmin(admin.ModelAdmin):
     inlines = [CommentInline]
 
-admin.site.register(Book)
+admin.site.register(Book, BookAdmin)
 admin.site.register(Comment)
