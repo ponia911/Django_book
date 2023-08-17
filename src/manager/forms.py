@@ -1,4 +1,4 @@
-from django.forms import Form
+from django.forms import Form, TextInput, Textarea
 
 from manager.models import Book
 

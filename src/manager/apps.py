@@ -6,4 +6,4 @@ class ManagerConfig(AppConfig):
     name = 'manager'
 
     def ready(self):
-        import manager.signals
+        import manager.signal
