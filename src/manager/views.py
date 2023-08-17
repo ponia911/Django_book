@@ -20,7 +20,7 @@ class BookView(View):
                                          annotate(likes_comment=Count('likes'))
                                          )
         data = {'books': Book.objects.
-        prefetch_related(comments_for_prefetch, 'authors').all().order_by('-count_likes', 'date')
+        prefetch_related(comments_for_prefetch, 'authors').all().order_by('-count_likes', 'data')
                 # annotate(likes_book=Count('likes'))
                 }
         # data = {'books': Book.objects.all()}
